@@ -6,7 +6,8 @@ import {
   statelessSessions,
 } from '@keystone-next/keystone/session';
 import { User } from './schemas/User';
-import { sendPasswordResetEmail } from './lib/mail';
+import { Video } from './schemas/Video';
+// import { sendPasswordResetEmail } from './lib/mail';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keyatone-sick-fits-toturial';
@@ -23,12 +24,12 @@ const { withAuth } = createAuth({
   initFirstItem: {
     fields: ['name', 'email', 'password'],
   },
-  passwordResetLink: {
+  /* passwordResetLink: {
     async sendToken(args) {
       console.log(args);
       await sendPasswordResetEmail(args.token, args.identity);
     },
-  },
+  }, */
 });
 
 export default withAuth(
@@ -51,6 +52,7 @@ export default withAuth(
     },
     lists: createSchema({
       User,
+      Video,
     }),
 
     ui: {
